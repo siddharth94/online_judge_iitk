@@ -66,7 +66,9 @@ while (true)
 		//$sampleoutputfile="out";
 
 		//Compiling the file
-		exec("/opt/lampp/htdocs/onj/upload/compiler ".$filename." /opt/lampp/htdocs/onj/users/".$user."/".$name." ".$extension);
+		//exec("/opt/lampp/htdocs/onj/upload/compiler ".$filename." /opt/lampp/htdocs/onj/users/".$user."/".$name." ".$extension);
+		exec("/opt/lampp/htdocs/online_judge_iitk/onj/backend/upload/compiler ".$filename." /opt/lampp/htdocs/online_judge_iitk/onj/backend/users/".$user."/".$name." ".$extension);
+
 
 		//Check if executable is formed.
 		if (!file_exists("/var/chroot/".$filename))

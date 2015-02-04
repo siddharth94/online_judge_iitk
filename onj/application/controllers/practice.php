@@ -26,6 +26,7 @@ class Practice extends CI_Controller{
 
 		$this->load->view("header",$practice_data);
 		$this->load->view("body_nav",$practice_data);
+		$this->load->view("login");
 
 		$practice_data['practice_type_selected'] = $this->uri->segment(2);
 		
@@ -51,6 +52,7 @@ class Practice extends CI_Controller{
 		if ($practice_data['practice_type_selected'] == 'easy'){
 			$this->load->view("header",$practice_data);
 			$this->load->view("body_nav",$practice_data);
+			$this->load->view('login');
 		}
 		
 		#To get the problems of the desired category.
@@ -101,6 +103,7 @@ Could not integrate with easy as the function name appears in uri.
 		if ($practice_data['practice_type_selected'] == 'medium'){
 			$this->load->view("header",$practice_data);
 			$this->load->view("body_nav",$practice_data);
+			$this->load->view('login');
 		}
 		
 		$this->load->model("problems_model");
@@ -172,11 +175,7 @@ Could not integrate with easy as the function name appears in uri.
 
 	public function problem (){
           
-                
-       // $this->load->view('body_problem') ;
-
-
-        $this->load->model('problems_model');
+$this->load->model('problems_model');
         $problem_id = $this->uri->segment(3);
 
         if($problem_id !="")
@@ -184,17 +183,31 @@ Could not integrate with easy as the function name appears in uri.
 
             $practice_data['problem_details'] = $this->problems_model->get_problem_by_id($problem_id);
 
+            if($practice_data['problem_details']=="none")
+                redirect(base_url().'pratice/easy');
 
             $practice_data['title']="Problem";
             $practice_data['active']="Practice";
           
             $this->load->view('header',$practice_data);
             $this->load->view('body_nav',$practice_data);
+            $this->load->view('login');
             $this->load->view('problem_head',$practice_data);
             $this->load->view('problem_desc',$practice_data);
-            $this->load->view('problem_submission');
-            $this->load->view('problem_recent_submissions');
-            $this->load->view('problem_user_submissions');
+            if($this->session->userdata('is_logged_in')==1)
+            {
+                $this->load->view('problem_submission');
+            }
+            $this->load->model('submission_model');
+            $r_subm['submissions'] = $this->submission_model->get_submissions('%','%','0','10','1','%',$problem_id);
+           	$r_subm['problem_name'] = $practice_data['problem_details'][0]->problem_name ;
+            $r_subm['problem_id'] = $practice_data['problem_details'][0]->problem_id ;
+            $r_subm['total_sub'] = $this->submission_model->no_of_submissions('%',$problem_id,'%','%');
+            $r_subm['accepted_sub'] = $this->submission_model->no_of_submissions('%',$problem_id,'%',111);
+
+
+            $this->load->view('problem_recent_submissions',$r_subm);
+            //$this->load->view('problem_user_submissions');
         }
         else
         {

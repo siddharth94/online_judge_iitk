@@ -6,8 +6,9 @@ body,html {
 .nav{
     position:fixed;
     left:0;
-    top:100px;
+    top:150px;
     height: 80%;
+    width : 100px;
     
 }
 
@@ -21,11 +22,17 @@ body,html {
     font-size:large;
 }
 
+#login_bar{
+    width:100%;
+    height:auto;
+}
+
 #grid{
-    position:absolute;
+    position:relative;
     left:125px;
     width:90%;
-    overflow-y:auto;
+    overflow-y:hidden;
+    overflow-x:hidden;
     
 }
 
@@ -39,5 +46,19 @@ body,html {
 }
 
 a{
-    text-decoration: none;
+    text-decoration: none;    
+    color: black;
+}
+
+#edit_on_table{
+    color:white;
+}
+
+#loginmenu{
+    width:200px;
+}
+
+#add_contest_column
+{
+    height: 700px;
 }

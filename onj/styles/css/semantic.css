@@ -3225,7 +3225,7 @@ body > .ui.grid {
 }
 
 .ui.small.vertical.menu {
-  width: 13rem;
+  width: 120px;
 }
 
 .ui.menu .item {
@@ -13541,6 +13541,8 @@ a.ui.teal.label:hover:before {
   line-height: 1.6;
 }
 
+
+
 /*--------------
      Actions
 ---------------*/
@@ -16428,6 +16430,15 @@ body.pushed.scrolling.ui.dimmable {
   box-sizing: border-box;
 }
 
+.ui.items .item > .custom_content,
+.ui.items .item > .custom_content > .meta,
+.ui.items .item > .custom_content > .extra {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 /*--------------
       Images
 ---------------*/
@@ -16479,6 +16490,36 @@ body.pushed.scrolling.ui.dimmable {
 }
 
 /*--------------
+     Custom_Content
+---------------*/
+
+.ui.items .item > .custom_content {
+  padding: 0.75em 0.5em;
+}
+
+.ui.items .item > .custom_content > .name {
+  display: block;
+  font-size: 1.25em;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.ui.items .item > .custom_content > .description {
+  clear: both;
+  margin: 0em 0em;
+  color: rgba(0, 0, 0, 0.45);
+}
+
+.ui.items .item > .custom_content > .description p {
+  margin: 0em 0em 0.2em;
+}
+
+.ui.items .item > .custom_content > .description p:last-child {
+  margin-bottom: 0em;
+}
+
+/*--------------
       Meta
 ---------------*/
 
@@ -16488,6 +16529,10 @@ body.pushed.scrolling.ui.dimmable {
 }
 
 .ui.items .item > .content > .meta + .name {
+  float: left;
+}
+
+.ui.items .item > .custom_content > .meta + .name {
   float: left;
 }
 

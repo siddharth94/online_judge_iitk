@@ -20,7 +20,7 @@ class Contests_model extends CI_Model{
 
 	public function get_all_contests_name_and_id (){
 
-		$q= $this->db->query("SELECT `contest_name` ,`contest_id`  FROM `contests` ORDER BY `id` DESC ");
+		$q= $this->db->query("SELECT `contest_name` ,`contest_id`,`start_time`,`end_time`  FROM `contests` ORDER BY `start_time` DESC ");
 
 		return $q->result();
 
@@ -29,11 +29,13 @@ class Contests_model extends CI_Model{
 
 	public function get_contest_by_id($contest_id){
 
-		if($contest_id=="")
-			$q= $this->db->query("");
-		else
+		
 		$q = $this->db->query("SELECT *  FROM `contests` WHERE `contest_id` = '".$contest_id."'");
+
+		if($q->num_rows > 0)
 		return $q->result();
+		else 
+			return "none" ;
 	}
 
 
